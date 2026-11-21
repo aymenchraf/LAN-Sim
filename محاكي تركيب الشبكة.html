@@ -6,14 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>مخبر الشبكة المحلية التفاعلي | LAN Lab</title>
     <!-- خطوط عربية واضحة -->
-    <link href="assets/vendor/cairo.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <!-- Tailwind CSS -->
-    <script src="assets/vendor/tailwindcss.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="assets/vendor/fontawesome-all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Three.js + OrbitControls -->
-    <script src="assets/vendor/three.min.js"></script>
-    <script src="assets/vendor/OrbitControls.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 
     <style>
         * {
@@ -402,9 +404,8 @@
                 <i class="fa-solid fa-network-wired text-white text-base"></i>
             </div>
             <div>
-                <h1 class="text-sm font-extrabold text-white leading-tight">مخبر الشبكة المحلية </h1>
-                <p class="text-[10px] text-sky-300 hidden sm:block">عليك إتمام المهام بالترتيب، تأكد دوما من دليل الحصة
-                </p>
+                <h1 class="text-sm font-extrabold text-white leading-tight">مخبر الشبكة المحلية 3D</h1>
+                <p class="text-[10px] text-sky-300 hidden sm:block">مراحل عملية موجهة • التعليم الثانوي</p>
             </div>
         </div>
 
@@ -833,7 +834,7 @@
                 {
                     id: 2,
                     title: 'إعداد مودم الألياف البصرية (Wi-Fi)',
-                    hint: 'انقر على "خلف المودم (البطاقة والمنافذ)" لقراءة بيانات البطاقة (admin / Fiber@2026)، ثم افتح الحاسوب المكتبي ← المتصفح ← 192.168.1.1 ← تبويب Wi-Fi وغيّر اسم الشبكة واختر WPA2-PSK وكلمة مرور من 8 أحرف على الأقل.',
+                    hint: 'انقر على "خلف المودم (البطاقة والمنافذ)" لقراءة بيانات البطاقة (admin / fiber2026)، ثم افتح الحاسوب المكتبي ← المتصفح ← 192.168.1.1 ← تبويب Wi-Fi وغيّر اسم الشبكة واختر WPA2-PSK وكلمة مرور من 8 أحرف على الأقل.',
                     tasks: [
                         { text: 'معاينة بطاقة المعلومات الافتراضية على ظهر المودم', done: networkState.inspectedModemBack },
                         { text: 'تسجيل الدخول لصفحة المودم 192.168.1.1 من الحاسوب المكتبي', done: networkState.modemLoggedIn },
@@ -1266,19 +1267,20 @@
             ctx.lineWidth = 14;
             ctx.strokeRect(7, 7, 1010, 370);
 
+            ctx.fillStyle = '#0f172a';
+            ctx.font = 'bold 44px Cairo, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('إقرأ دليل الحصة للقيام بالعمل الصحيح', 512, 260);
+
+            ctx.fillStyle = '#0f172a';
+            ctx.font = 'bold 44px Cairo, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('عمل تطبيقي : تركيب الشبكة المحلية', 512, 160);
+
             ctx.fillStyle = '#dc2626';
             ctx.font = 'bold 24px Cairo, sans-serif';
-            ctx.fillText('ثانوية قصار عبد الله', 512, 60);
+            ctx.fillText('ثانوية قصار عبد الله - الأستاذ شرف أيمن', 512, 60);
 
-            ctx.fillStyle = '#0f172a';
-            ctx.font = 'bold 44px Cairo, sans-serif';
-            ctx.textAlign = 'center';
-            ctx.fillText('العمل التطبيقي: الشبكة المحلية ', 512, 140);
-
-            ctx.fillStyle = '#0f172a';
-            ctx.font = 'bold 44px Cairo, sans-serif';
-            ctx.textAlign = 'center';
-            ctx.fillText(' لا تنسى فتح دليل الحصة لمعرفة النشاط', 512, 240);
             return new THREE.CanvasTexture(c);
         }
 
@@ -1769,7 +1771,7 @@
             const T = new THREE.Group();
             T.position.set(2.3, 0, 3.7);
             scene.add(T);
-            const wood = std(0xffffff, { roughness: 0.5 });
+            const wood = std(0xC49A6C, { roughness: 0.5 });
             wood.map = createWoodTexture();
             const top = bx(1.95, 0.07, 1.25, wood, T, 0, 0.93, 0);
             top.castShadow = top.receiveShadow = true;
@@ -1867,7 +1869,7 @@
             // الجدار الخلفي
             const wall = new THREE.Mesh(
                 new THREE.PlaneGeometry(24, 10),
-                new THREE.MeshStandardMaterial({ color: 0xdde3ea, roughness: 0.92 })
+                new THREE.MeshStandardMaterial({ color: 0x406799, roughness: 0.92 })
             );
             wall.position.set(0, 5, -3.5);
             wall.receiveShadow = true;
@@ -1899,7 +1901,7 @@
             );
             deskTop.position.set(0, 1.0, 0.2);
             deskTop.castShadow = true;
-            deskTop.receiveShadow = true;
+
             scene.add(deskTop);
 
             // أرجل المكتب
@@ -2226,7 +2228,7 @@
 
             if (presetName === 'modemBack' && !networkState.inspectedModemBack) {
                 networkState.inspectedModemBack = true;
-                showToast('رائع! يمكنك الآن قراءة بيانات بطاقة المودم (admin / Fiber@2026) وتوصيل المنافذ الخلفية.', 'info');
+                showToast('رائع! يمكنك الآن قراءة بيانات بطاقة المودم (admin / fiber2026) وتوصيل المنافذ الخلفية.', 'info');
                 syncAllUI();
             }
             document.querySelectorAll('.cam-btn').forEach(b => b.classList.remove('active'));
@@ -2249,7 +2251,7 @@
             } else if (d.action === 'inspectSticker') {
                 networkState.inspectedModemBack = true;
                 playSound('success');
-                showToast('بيانات البطاقة: IP = 192.168.1.1 | User = admin | Pass = Fiber@2026', 'info');
+                showToast('بيانات البطاقة: IP = 192.168.1.1 | User = admin | Pass = fiber2026', 'info');
                 syncAllUI();
             } else if (d.action === 'toggleModemPower') {
                 if (!networkState.cables.power) {
@@ -2985,7 +2987,7 @@
                 renderActiveOS();
             } else {
                 playSound('error');
-                showToast('بيانات الدخول خاطئة! راجع البطاقة خلف المودم (admin / Fiber@2026).', 'error');
+                showToast('بيانات الدخول خاطئة! راجع البطاقة خلف المودم (admin / fiber2026).', 'error');
             }
         }
 
@@ -3035,7 +3037,7 @@
             <div class="space-y-3">
                 <div class="flex items-center justify-between">
                     <span class="font-extrabold text-sm text-white flex items-center gap-1.5"><i class="fa-brands fa-youtube text-red-500 text-xl"></i>YouTube التعليمي</span>
-                    <span class="text-[11px] text-emerald-400 font-bold">متصل بالويفي✓</span>
+                    <span class="text-[11px] text-emerald-400 font-bold">متصل عبر الوايفاي </span>
                 </div>
                 ${playing ? `
                     <div class="rounded-2xl overflow-hidden border border-red-500/40 bg-black yt-playing">
@@ -5544,6 +5546,28 @@
             window.onload = function () {
                 if (typeof previousOnload === 'function') previousOnload();
                 renderMissionsSidebar();
+            };
+
+            // Reopen the lesson guide automatically whenever the learner completes a task.
+            // Track the active task so the initial page render does not open a deliberately closed guide.
+            let observedLessonTaskCode = currentLessonTask()?.code ?? null;
+            const previousRenderMissionsSidebar = renderMissionsSidebar;
+            renderMissionsSidebar = function () {
+                const activeTask = currentLessonTask();
+                const activeTaskCode = activeTask?.code ?? null;
+                const taskWasCompleted = activeTaskCode !== observedLessonTaskCode;
+                observedLessonTaskCode = activeTaskCode;
+
+                if (taskWasCompleted && !networkState.sidebarOpen) {
+                    networkState.sidebarOpen = true;
+                    const sidebar = document.getElementById('mission-sidebar');
+                    if (sidebar) {
+                        sidebar.classList.remove('translate-x-full');
+                        sidebar.classList.add('translate-x-0');
+                    }
+                }
+
+                return previousRenderMissionsSidebar();
             };
 
             // Repaint the current-step guide whenever progress or device state changes.
